@@ -1,0 +1,42 @@
+"use-client";
+import { useEffect, useState } from "react";
+import { ContactCard } from "../ui/contact-card";
+
+import { getSocket } from "@/lib/socket/auth";
+import { Contact } from "@/lib/types/contact";
+import { getContacts } from "@/lib/api/contact";
+import { useRouter } from "next/navigation";
+import { listenNewContact } from "@/lib/socket/contact";
+
+export function ContactList() {
+  const [contactList, setContactList] = useState<Contact[]>([]);
+  const router = useRouter();
+
+  useEffect(() => {
+    const socket = getSocket();
+    listenNewContact(socket, setContactList);
+    const getMyContatcs = async () => {
+      try {
+        setContactList(await getContacts());
+      } catch (error) {
+        if (error.status == 401) {
+          router.replace("/login");
+        }
+      }
+    };
+
+    getMyContatcs();
+
+    return () => {
+      socket.off("contact:new");
+    };
+  }, []);
+  return (
+    <div className="w-full space-y-2">
+      {contactList &&
+        contactList.map((contact) => (
+          <ContactCard key={contact.id} contact={contact} />
+        ))}
+    </div>
+  );
+}
