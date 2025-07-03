@@ -7,10 +7,21 @@ import { Contact } from "@/lib/types/contact";
 import { getContacts } from "@/lib/api/contact";
 import { useRouter } from "next/navigation";
 import { listenNewContact } from "@/lib/socket/contact";
+import useContactStore from "@/store/use-contact-store";
 
 export function ContactList() {
   const [contactList, setContactList] = useState<Contact[]>([]);
   const router = useRouter();
+
+  function handlerShowContactDetais() {
+    const isOpen = useContactStore.getState().isOpen;
+    if (isOpen) {
+      useContactStore.getState().close();
+      useContactStore.getState().open();
+    } else {
+      useContactStore.getState().open();
+    }
+  }
 
   useEffect(() => {
     const socket = getSocket();
