@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Contact } from "@/lib/types/contact"; // sesuaikan path-nya
+import useContactStore from "@/store/use-contact-store";
 
 export function ContactCard({ contact }: { contact: Contact }) {
   const name = contact.name;
@@ -9,10 +10,25 @@ export function ContactCard({ contact }: { contact: Contact }) {
   const date = "Baru saja"; // kamu bisa ambil waktu dari message kalau ada
   const totalUnreadMessage = contact.totalUnreadMessage;
 
+  function handlerShowContactDetais() {
+    console.log("Show contact details for:", contact);
+    const isOpen = useContactStore.getState().isOpen;
+    if (isOpen) {
+      useContactStore.getState().close();
+      useContactStore.getState().setSelectedContact(contact);
+      useContactStore.getState().open();
+      console.log(useContactStore.getState().isOpen);
+    } else {
+      useContactStore.getState().setSelectedContact(contact);
+      useContactStore.getState().open();
+      console.log(useContactStore.getState().isOpen);
+    }
+  }
+
   return (
     <Card className="w-full shadow-none max-w-sm p-4 cursor-pointer hover:bg-accent transition">
       <div className="flex items-center space-x-4">
-        <Avatar>
+        <Avatar onClick={handlerShowContactDetais}>
           <AvatarImage src="/images/profile.jpg" alt={name} />
           <AvatarFallback>{name.slice(0, 2).toUpperCase()}</AvatarFallback>
         </Avatar>
