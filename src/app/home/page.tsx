@@ -1,4 +1,5 @@
 "use client";
+import { ContactDetail } from "@/components/contact-detail";
 import { Sidebar } from "@/components/sidebar/index";
 import { connectSocket, getSocket } from "@/lib/socket/auth";
 import { listenErrorAddNewContact } from "@/lib/socket/contact";
@@ -21,6 +22,8 @@ export default function Home() {
         <h1 className="text-xl font-bold">Konten Utama</h1>
         <p>Ini bagian kanan, isi konten di sini.</p>
       </div>
+
+      <ContactDetail />
     </div>
   );
 }
