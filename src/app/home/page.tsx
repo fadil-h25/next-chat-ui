@@ -2,7 +2,7 @@
 import { ContactDetail } from "@/components/contact-detail";
 import { Sidebar } from "@/components/sidebar/index";
 import { connectSocket, getSocket } from "@/lib/socket/auth";
-import { listenErrorAddNewContact } from "@/lib/socket/contact";
+import { listenErrorAddNewContact } from "@/lib/socket/contact/contact";
 import { useEffect } from "react";
 
 export default function Home() {

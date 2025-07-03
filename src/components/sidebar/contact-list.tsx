@@ -6,7 +6,7 @@ import { getSocket } from "@/lib/socket/auth";
 import { Contact } from "@/lib/types/contact";
 import { getContacts } from "@/lib/api/contact";
 import { useRouter } from "next/navigation";
-import { listenNewContact } from "@/lib/socket/contact";
+import { listenNewContact } from "@/lib/socket/contact/contact";
 import useContactStore from "@/store/use-contact-store";
 
 export function ContactList() {

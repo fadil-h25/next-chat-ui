@@ -13,7 +13,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { getSocket } from "@/lib/socket/auth";
-import { addNewContact } from "@/lib/socket/contact";
+import { addNewContact } from "@/lib/socket/contact/contact";
 import { toast } from "sonner";
 
 export function AddContactDialog() {

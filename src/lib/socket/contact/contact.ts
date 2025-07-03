@@ -1,6 +1,6 @@
 import { Socket } from "socket.io-client";
-import { AddNewContact, Contact } from "../types/contact";
-import { SocketResponseType } from "../types/socket-response.type";
+import { AddNewContact, Contact } from "../../types/contact";
+import { SocketResponseType } from "../../types/socket-response.type";
 
 export const listenNewContact = (
   socket: Socket,
