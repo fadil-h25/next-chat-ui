@@ -3,6 +3,9 @@ export type Contact = {
   ownerId: number;
   name: string;
   targetId: number;
+  target: {
+    phone: string;
+  };
   totalUnreadMessage: number;
   relationId: number | null;
   relation: {
