@@ -14,10 +14,15 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { getSocket } from "@/lib/socket/auth";
 import { addNewContact } from "@/lib/socket/contact";
+import { toast } from "sonner";
 
 export function AddContactDialog() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+
+  const showSonner = () => {
+    toast("Kontak Berhasil Ditambahkan");
+  };
 
   const handleAddContact = async (e: React.FormEvent) => {
     try {
