@@ -1,19 +1,24 @@
 import { Socket } from "socket.io-client";
 import { AddNewContact, Contact } from "../types/contact";
+import { SocketResponseType } from "../types/socket-response.type";
 
 export const listenNewContact = (
   socket: Socket,
   setContactList: React.Dispatch<React.SetStateAction<Contact[]>>
 ) => {
   socket.on("contact:get_new", (newContact: Contact) => {
-    setContactList((prev) => [newContact, ...prev]);
+    console.log(newContact);
+    setContactList((prev) => [newContact.data, ...prev]);
   });
 };
 
 export const addNewContact = (socket: Socket, data: AddNewContact) => {
   socket.emit("contact:create", data, (response) => {
-    console.log("Server response:", response);
-    alert("Server says: " + JSON.stringify(response));
+    if (response.status === "OK") {
+      console.log("✅ Sukses:", response.message);
+    } else {
+      console.error("❌ Gagal:", response.message);
+    }
   });
 };
 
