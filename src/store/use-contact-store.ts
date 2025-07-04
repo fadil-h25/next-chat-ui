@@ -1,13 +1,14 @@
 import { create } from "zustand";
-import { Contact } from "@/lib/types/contact";
+
+import { ContactResponse } from "@/lib/types/response/contact-response";
 
 // 👉 1. Tipe untuk state dan actions
 type ContactStore = {
   isOpen: boolean;
-  selectedContact: Contact | null;
+  selectedContact: ContactResponse | null;
   open: () => void;
   close: () => void;
-  setSelectedContact: (contact: Contact | null) => void;
+  setSelectedContact: (contact: ContactResponse | null) => void;
 };
 
 // 👉 2. Buat store dengan tipe ContactStore
