@@ -14,13 +14,7 @@ export const listenNewContact = (
 };
 
 export const addNewContact = (socket: Socket, data: AddNewContact) => {
-  socket.emit(ContactWsEvent.CREATE_CONTACT, data, (response) => {
-    if (response.status === "OK") {
-      console.log("✅ Sukses:", response.message);
-    } else {
-      console.error("❌ Gagal:", response.message);
-    }
-  });
+  socket.emit(ContactWsEvent.CREATE_CONTACT, data);
 };
 
 export const listenErrorAddNewContact = (socket: Socket) => {
