@@ -12,8 +12,8 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { getSocket } from "@/lib/socket/auth";
-import { addNewContact } from "@/lib/socket/contact/contact";
+import { getSocket } from "@/lib/websocket/auth";
+import { addNewContact } from "@/lib/websocket/contact/contact";
 import { toast } from "sonner";
 
 export function AddContactDialog() {
