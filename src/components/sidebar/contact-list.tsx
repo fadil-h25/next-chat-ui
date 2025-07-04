@@ -8,6 +8,7 @@ import { getContacts } from "@/lib/api/contact";
 import { useRouter } from "next/navigation";
 import { listenNewContact } from "@/lib/socket/contact/contact";
 import useContactStore from "@/store/use-contact-store";
+import { listenUpdateContact } from "@/lib/socket/contact/update-contact";
 
 export function ContactList() {
   const [contactList, setContactList] = useState<Contact[]>([]);
@@ -26,6 +27,7 @@ export function ContactList() {
   useEffect(() => {
     const socket = getSocket();
     listenNewContact(socket, setContactList);
+    listenUpdateContact(socket, setContactList);
     const getMyContatcs = async () => {
       try {
         setContactList(await getContacts());
