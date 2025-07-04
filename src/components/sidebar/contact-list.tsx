@@ -2,27 +2,18 @@
 import { useEffect, useState } from "react";
 import { ContactCard } from "../ui/contact-card";
 
-import { getSocket } from "@/lib/socket/auth";
-import { Contact } from "@/lib/types/contact";
+import { getSocket } from "@/lib/websocket/auth";
+
 import { getContacts } from "@/lib/api/contact";
 import { useRouter } from "next/navigation";
-import { listenNewContact } from "@/lib/socket/contact/contact";
-import useContactStore from "@/store/use-contact-store";
-import { listenUpdateContact } from "@/lib/socket/contact/update-contact";
+import { listenNewContact } from "@/lib/websocket/contact/contact";
+
+import { listenUpdateContact } from "@/lib/websocket/contact/update-contact";
+import { ContactResponse } from "@/lib/types/response/contact-response";
 
 export function ContactList() {
-  const [contactList, setContactList] = useState<Contact[]>([]);
+  const [contactList, setContactList] = useState<ContactResponse[]>([]);
   const router = useRouter();
-
-  function handlerShowContactDetais() {
-    const isOpen = useContactStore.getState().isOpen;
-    if (isOpen) {
-      useContactStore.getState().close();
-      useContactStore.getState().open();
-    } else {
-      useContactStore.getState().open();
-    }
-  }
 
   useEffect(() => {
     const socket = getSocket();
