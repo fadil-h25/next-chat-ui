@@ -12,8 +12,8 @@ import {
 } from "../ui/sheet";
 
 import useContactStore from "@/store/use-contact-store";
-import { sendUpdateContact } from "@/lib/socket/contact/update-contact";
-import { getSocket } from "@/lib/socket/auth";
+import { sendUpdateContact } from "@/lib/websocket/contact/update-contact";
+import { getSocket } from "@/lib/websocket/auth";
 import { useState } from "react";
 
 export function ContactDetail() {
